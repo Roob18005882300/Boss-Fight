@@ -1,4 +1,13 @@
+namespace SpriteKind {
+    export const Melee = SpriteKind.create()
+}
+sprites.onOverlap(SpriteKind.Melee, SpriteKind.Enemy, function (sprite, otherSprite) {
+    info.player2.changeLifeBy(-1)
+    scene.cameraShake(5, 500)
+    pause(7500)
+})
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
+    info.changeLifeBy(1)
     potion.setImage(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . b b b b b b . . 
@@ -17,46 +26,44 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         b d d d d d d d d d d d d d . b 
         b b b b b b b b b b b b b d d d 
         `)
-    timer.after(5000, function () {
-        potion.setImage(img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . b b b 9 9 9 . . 
-            . . . . . . . . . b . . 9 9 . . 
-            . . . . . . . . . b b 9 9 . . . 
-            . . . . . . . . . b d 2 9 . . . 
-            . . . . . . . . b b d 2 9 . . . 
-            . . . . . . . . b d d 2 9 . . . 
-            . . . . . . . b . d . 2 9 . . . 
-            . . . . . . b . d d . . 9 9 . . 
-            . . . . . b b d d . . . 2 9 . . 
-            . . . . b b d d . . . . 2 9 . . 
-            . . . b b d d . . . . . 2 . 9 . 
-            . b b . d d . . . . . . 2 . 9 . 
-            b b d d . . . . . . . . . 2 . 9 
-            b d d d d d d d 2 2 2 2 2 2 . 9 
-            b b b b b b b b 9 b b b b 2 2 2 
-            `)
-    })
-    timer.after(5000, function () {
-        potion.setImage(img`
-            . . . . . . . . . . . . . . . . 
-            . . . . . . . . 9 9 9 9 9 9 . . 
-            . . . . . . . . . 9 . . 9 9 . . 
-            . . . . . . . . . 9 9 9 9 . . . 
-            . . . . . . . . . 9 2 2 9 . . . 
-            . . . . . . . . 9 9 2 2 9 . . . 
-            . . . . . . . . 9 2 . 2 9 . . . 
-            . . . . . . . 9 . 2 . 2 9 . . . 
-            . . . . . . 9 . 2 . . . 9 9 . . 
-            . . . . . 9 9 2 . . . . 2 9 . . 
-            . . . . 9 9 2 . . . . . 2 9 . . 
-            . . . 9 9 2 . . . . . . 2 . 9 . 
-            . 9 9 . 2 . . . . . . . 2 . 9 . 
-            9 9 2 2 . . . . . . . . . 2 . 9 
-            9 2 2 2 2 2 2 2 2 2 2 . . 2 . 9 
-            9 9 9 9 9 9 9 9 9 9 9 9 9 2 2 2 
-            `)
-    })
+    pause(5000)
+    potion.setImage(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . b b b 9 9 9 . . 
+        . . . . . . . . . b . . 9 9 . . 
+        . . . . . . . . . b b 9 9 . . . 
+        . . . . . . . . . b d 2 9 . . . 
+        . . . . . . . . b b d 2 9 . . . 
+        . . . . . . . . b d d 2 9 . . . 
+        . . . . . . . b . d . 2 9 . . . 
+        . . . . . . b . d d . . 9 9 . . 
+        . . . . . b b d d . . . 2 9 . . 
+        . . . . b b d d . . . . 2 9 . . 
+        . . . b b d d . . . . . 2 . 9 . 
+        . b b . d d . . . . . . 2 . 9 . 
+        b b d d . . . . . . . . . 2 . 9 
+        b d d d d d d d 2 2 2 2 2 2 . 9 
+        b b b b b b b b 9 b b b b 2 2 2 
+        `)
+    pause(5000)
+    potion.setImage(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . 9 9 9 9 9 9 . . 
+        . . . . . . . . . 9 . . 9 9 . . 
+        . . . . . . . . . 9 9 9 9 . . . 
+        . . . . . . . . . 9 2 2 9 . . . 
+        . . . . . . . . 9 9 2 2 9 . . . 
+        . . . . . . . . 9 2 . 2 9 . . . 
+        . . . . . . . 9 . 2 . 2 9 . . . 
+        . . . . . . 9 . 2 . . . 9 9 . . 
+        . . . . . 9 9 2 . . . . 2 9 . . 
+        . . . . 9 9 2 . . . . . 2 9 . . 
+        . . . 9 9 2 . . . . . . 2 . 9 . 
+        . 9 9 . 2 . . . . . . . 2 . 9 . 
+        9 9 2 2 . . . . . . . . . 2 . 9 
+        9 2 2 2 2 2 2 2 2 2 2 . . 2 . 9 
+        9 9 9 9 9 9 9 9 9 9 9 9 9 2 2 2 
+        `)
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     SwordSwing.setImage(img`
@@ -172,6 +179,15 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `)
+    pause(200)
+})
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Player, function (sprite, otherSprite) {
+    otherSprite.setFlag(SpriteFlag.GhostThroughSprites, true)
+    sprite.destroy()
+    info.player1.changeLifeBy(-1)
+    scene.cameraShake(3, 500)
+    pause(2000)
+    otherSprite.setFlag(SpriteFlag.GhostThroughSprites, false)
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     Sword.setImage(img`
@@ -251,14 +267,15 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
         `)
     SwordSwing.setPosition(Player1.x + 16, Player1.y)
 })
+info.player1.onLifeZero(function () {
+    game.splash("Good Try.")
+    game.over(false)
+})
 info.player2.onLifeZero(function () {
-    scene.cameraShake(8, 5000)
+    scene.cameraShake(8, 7000)
+    pause(2000)
 })
-sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
-    info.player2.changeLifeBy(-1)
-    scene.cameraShake(5, 500)
-    pause(100)
-})
+let projectile: Sprite = null
 let SwordSwing: Sprite = null
 let potion: Sprite = null
 let Sword: Sprite = null
@@ -385,7 +402,6 @@ scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     `)
-game.splash("")
 tiles.setTilemap(tilemap`level1`)
 Player1 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
@@ -462,8 +478,10 @@ potion = sprites.create(img`
     9 2 2 2 2 2 2 2 2 2 2 . . 2 . 9 
     9 9 9 9 9 9 9 9 9 9 9 9 9 2 2 2 
     `, SpriteKind.Player)
+potion.setPosition(10, 107)
 potion.setFlag(SpriteFlag.Ghost, true)
 potion.setFlag(SpriteFlag.GhostThroughWalls, true)
+potion.setFlag(SpriteFlag.RelativeToCamera, true)
 SwordSwing = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -481,11 +499,92 @@ SwordSwing = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    `, SpriteKind.Projectile)
-info.player2.setLife(3)
+    `, SpriteKind.Melee)
+info.player2.setLife(5)
+info.player1.setLife(3)
+let EndGame = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Player)
+let BossAttack = 0
+let mySprite = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Player)
 forever(function () {
     Player1.x += controller.dx()
     Player1.y += controller.dy()
     Sword.setPosition(Player1.x, Player1.y)
     SwordSwing.setPosition(Player1.x + 16, Player1.y)
+})
+forever(function () {
+    if (BossAttack == 1) {
+        for (let index = 0; index < 3; index++) {
+            pause(1000)
+            projectile = sprites.createProjectileFromSprite(img`
+                4 
+                2 
+                2 
+                2 
+                2 
+                2 
+                `, BossStg1, -70, 0)
+            projectile = sprites.createProjectileFromSprite(img`
+                . . . . . 4 2 2 2 2 2 . . . . . 
+                `, BossStg1, 0, 70)
+            projectile = sprites.createProjectileFromSprite(img`
+                2 
+                2 
+                2 
+                2 
+                2 
+                4 
+                `, BossStg1, 0, -70)
+            projectile = sprites.createProjectileFromSprite(img`
+                4 2 2 2 2 2 
+                `, BossStg1, 70, 0)
+        }
+    }
+    if (BossAttack == 2) {
+    	
+    }
+})
+forever(function () {
+    pause(randint(2000, 10000))
+    BossAttack = 1
+    pause(100)
+    BossAttack = 0
+})
+forever(function () {
+    if (info.life() == 4) {
+        info.setLife(3)
+    }
 })
