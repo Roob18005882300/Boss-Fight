@@ -701,7 +701,7 @@ forever(function () {
 })
 forever(function () {
     pause(2000)
-    BossAttack = randint(1, 3)
+    BossAttack = randint(1, 2)
     pause(100)
     BossAttack = 0
 })
